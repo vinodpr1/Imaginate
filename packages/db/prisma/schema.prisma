@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum GenderEnum {
+  MAN
+  WOMEN 
+  OTHER
+}
+
+enum EthinicityEnum {
+  White 
+  Black
+  Asian
+  American
+  EastSouthAsian  @map("East South Asian")
+  SouthAsian      @map("South Asian")
+  Pacific
+  MiddleEastern   @map("Middle Eastern")
+  Hispanic
+}
+
+enum EyeColorEnum {
+  Brown
+  Gray
+  Hazel
+  Blue
+}
+
+
+model User {
+   id               String @id  @default(uuid())
+   name             String
+   profilePicture       String?
+   createdAt          DateTime @default(now())
+   updatedAt          DateTime @default(now())
+}
+
+model TrainModel {
+   id               String @id  @default(uuid())
+   name             String
+   type             GenderEnum @default(MAN)
+   age              Int @default(15)
+   ethinicity       EthinicityEnum @default(White)
+   eyeColor         EyeColorEnum @default(Brown) 
+   bald             Boolean @default(false)
+   userId           String
+   trainingImages   TrainingImages[]
+   outputImages     OutputImages[]
+   createdAt          DateTime @default(now())
+   updatedAt          DateTime @default(now())
+}
+
+model TrainingImages { 
+  id        String @id  @default(uuid())
+  imageUrl  String
+  modelId   String
+  model     TrainModel @relation( fields: [modelId], references: [id] )
+}
+
+model OutputImages {
+   id        String @id  @default(uuid())
+   imageUrl  String
+   modelId   String
+   userId    String
+   model     TrainModel @relation( fields: [modelId], references: [id] )
+   createdAt          DateTime @default(now())
+   updatedAt          DateTime @default(now())
+}
+
+model Pack {
+   id            String @id  @default(uuid())
+   name          String
+   packPrompts   PackPrompts[]
+}
+
+model PackPrompts {
+  id      String @id  @default(uuid())
+  prompt    String
+  packId    String
+  model     Pack @relation( fields: [packId], references: [id] )
+}
+
+
+
+
