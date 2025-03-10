@@ -10,15 +10,15 @@ const Hero = () => {
           Transform Your Ideas Into
           <span className="text-primary"> Stunning Images</span>
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8 ">
           Create beautiful, unique images in seconds with our advanced AI image
           generator. Perfect for artists, designers, and creators.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" className="gap-2">
+          <Button size="lg" className="gap-2 default-button">
             Start Creating <ArrowRight className="h-4 w-4" />
           </Button>
-          <Button size="lg" variant="outline">
+          <Button size="lg" variant="outline" className="ghost-button">
             View Gallery
           </Button>
         </div>

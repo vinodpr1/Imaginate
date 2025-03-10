@@ -10,7 +10,7 @@ const Footer = () => {
         <p className="text-xl mb-8 opacity-90">
           Join thousands of creators using ImageAI to bring their ideas to life.
         </p>
-        <Button size="lg" variant="secondary" className="gap-2">
+        <Button size="lg" variant="secondary" className="ghost-button">
           Get Started Now <ArrowRight className="h-4 w-4" />
         </Button>
       </div>

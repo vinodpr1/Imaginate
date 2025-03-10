@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Logo } from "./ui/logo";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -28,8 +29,10 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-6xl">
         <div className="flex items-center space-x-2">
-          <Logo size="md" />
-          <span className="text-xl font-bold">Imaginate</span>
+          <Link className="flex items-center space-x-2" href={"/"}>
+            <Logo size="md" />
+            <span className="text-xl font-bold">Imaginate</span>
+          </Link>
         </div>
         <nav className="hidden md:flex items-center space-x-6">
           <a
@@ -52,8 +55,10 @@ const Navbar = () => {
           </a>
         </nav>
         <div className="flex items-center space-x-4">
-          <Button variant="ghost">Log in</Button>
-          <Button>Get Started</Button>
+          <Button variant="ghost" className="ghost-button">
+            Log in
+          </Button>
+          <Button className="default-button">Get Started</Button>
         </div>
       </div>
     </header>

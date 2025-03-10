@@ -125,13 +125,28 @@
 
 
 
-
-
 /* grid backgrounf */
 
 .grid-background {
   background-image: linear-gradient(to right, #eee6e6 0.5px, transparent 1px),
     linear-gradient(to bottom, #e9dfdf 0.5px, transparent 1px);
   background-size: 60px 60px;
-  background-color: bg-linear-to-r/increasing from-indigo-500 to-teal-400;
+}
+
+
+/*  button designing */
+
+.ghost-button {
+  cursor: pointer;
+  background-color: #e5e7eb; /* Equivalent to bg-gray-200 */
+  transition: all 0.5s ease-in-out;
+}
+
+.ghost-button:hover {
+  background-color: #d1d5db; /* Equivalent to hover:bg-gray-300 */
+}
+
+.default-button {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
