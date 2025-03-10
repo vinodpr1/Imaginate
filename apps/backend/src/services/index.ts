@@ -1,5 +1,3 @@
 import { AIService } from "./AI-service";
 
-export {
-    AIService
-}
+export { AIService };
