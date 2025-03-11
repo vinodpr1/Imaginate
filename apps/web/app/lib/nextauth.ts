@@ -125,13 +125,11 @@ export const AuthOptions = {
     },
 
     jwt: async ({ token, user }: any): Promise<JWT> => {
-      console.log("DATAAAAAAAAa", token, user);
       const newToken = token;
       if (user) {
         newToken.uid = user.id;
         newToken.jwtToken = (user as User).token;
       }
-      console.log("new tokennn DATAAAAAAAAa", newToken);
       return newToken;
     },
     async redirect({ url, baseUrl }: any) {

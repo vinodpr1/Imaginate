@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Logo } from "./ui/logo";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 const Navbar = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -55,6 +56,9 @@ const Navbar = () => {
           </a>
         </nav>
         <div className="flex items-center space-x-4">
+          <Button onClick={()=>signOut()} variant="ghost" className="ghost-button">
+            Log Out
+          </Button>
           <Button variant="ghost" className="ghost-button">
             <Link href="/auth/signin">Log in</Link>
           </Button>
