@@ -43,6 +43,8 @@ enum EyeColorEnum {
 model User {
    id               String @id  @default(uuid())
    name             String
+   email            String
+   password         String
    profilePicture       String?
    createdAt          DateTime @default(now())
    updatedAt          DateTime @default(now())

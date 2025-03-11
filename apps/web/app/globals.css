@@ -128,8 +128,8 @@
 /* grid backgrounf */
 
 .grid-background {
-  background-image: linear-gradient(to right, #eee6e6 0.5px, transparent 1px),
-    linear-gradient(to bottom, #e9dfdf 0.5px, transparent 1px);
+  background-image: linear-gradient(to right, #c2bdbd 0.5px, transparent 1px),
+    linear-gradient(to bottom, #c2bdbd 0.5px, transparent 1px);
   background-size: 60px 60px;
 }
 

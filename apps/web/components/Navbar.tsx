@@ -56,7 +56,7 @@ const Navbar = () => {
         </nav>
         <div className="flex items-center space-x-4">
           <Button variant="ghost" className="ghost-button">
-            Log in
+            <Link href="/auth/signin">Log in</Link>
           </Button>
           <Button className="default-button">Get Started</Button>
         </div>
