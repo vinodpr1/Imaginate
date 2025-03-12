@@ -25,10 +25,10 @@ enum EthinicityEnum {
   Black
   Asian
   American
-  EastSouthAsian  @map("East South Asian")
-  SouthAsian      @map("South Asian")
-  Pacific
-  MiddleEastern   @map("Middle Eastern")
+  EastSouthAsian            @map("East South Asian")
+  SouthAsian                @map("South Asian")
+  Pacific          
+  MiddleEastern             @map("Middle Eastern")
   Hispanic
 }
 
@@ -41,58 +41,67 @@ enum EyeColorEnum {
 
 
 model User {
-   id               String @id  @default(uuid())
-   name             String
-   email            String
-   password         String
-   profilePicture       String?
-   createdAt          DateTime @default(now())
-   updatedAt          DateTime @default(now())
+   id                       String @id  @default(uuid())
+   name                     String
+   email                    String
+   password                 String
+   profilePicture           String?
+   createdAt                DateTime @default(now())
+   updatedAt                DateTime @default(now())
 }
 
 model TrainModel {
-   id               String @id  @default(uuid())
-   name             String
-   type             GenderEnum @default(MAN)
-   age              Int @default(15)
-   ethinicity       EthinicityEnum @default(White)
-   eyeColor         EyeColorEnum @default(Brown) 
-   bald             Boolean @default(false)
-   userId           String
-   trainingImages   TrainingImages[]
-   outputImages     OutputImages[]
-   createdAt          DateTime @default(now())
-   updatedAt          DateTime @default(now())
+   id                       String @id  @default(uuid())
+   name                     String
+   type                     GenderEnum @default(MAN)
+   age                      Int @default(15)
+   ethinicity               EthinicityEnum @default(White)
+   eyeColor                 EyeColorEnum @default(Brown) 
+   bald                     Boolean @default(false)
+   userId                   String
+   tensorPath               String?
+   trainingImages           TrainingImages[]
+   outputImages             OutputImages[]
+   createdAt                DateTime @default(now())
+   updatedAt                DateTime @default(now())
 }
 
 model TrainingImages { 
-  id        String @id  @default(uuid())
-  imageUrl  String
-  modelId   String
-  model     TrainModel @relation( fields: [modelId], references: [id] )
+   id                       String @id  @default(uuid())
+   imageUrl                 String
+   modelId                  String
+   model                    TrainModel @relation( fields: [modelId], references: [id] )
+}
+
+enum Status {
+  PENDING
+  GENERATED
+  FAILED
 }
 
 model OutputImages {
-   id        String @id  @default(uuid())
-   imageUrl  String
-   modelId   String
-   userId    String
-   model     TrainModel @relation( fields: [modelId], references: [id] )
-   createdAt          DateTime @default(now())
-   updatedAt          DateTime @default(now())
+   id                      String @id  @default(uuid())
+   imageUrl                String?
+   modelId                 String
+   userId                  String
+   prompt                  String
+   status                  Status @default(PENDING)
+   model                   TrainModel @relation( fields: [modelId], references: [id] )
+   createdAt               DateTime @default(now())
+   updatedAt               DateTime @default(now())
 }
 
 model Pack {
-   id            String @id  @default(uuid())
-   name          String
-   packPrompts   PackPrompts[]
+   id                      String @id  @default(uuid())
+   name                    String
+   packPrompts             PackPrompts[]
 }
 
 model PackPrompts {
-  id      String @id  @default(uuid())
-  prompt    String
-  packId    String
-  model     Pack @relation( fields: [packId], references: [id] )
+   id                      String @id  @default(uuid())
+   prompt                  String
+   packId                  String
+   model                   Pack @relation( fields: [packId], references: [id] )
 }
 
 

@@ -20,6 +20,7 @@ import {
 } from "../src/components/ui/select";
 import { Switch } from "../src/components/ui/switch";
 import { useState } from "react";
+import axios from "axios";
 
 const TrainAIModel = () => {
     const [trainingData, setTrainingData] = useState({
@@ -27,7 +28,7 @@ const TrainAIModel = () => {
         age: 0,
         ethinicity: "",
         type: "",
-        eyecolor: "",
+        eyeColor: "",
         bald: false,
     });
 
@@ -54,14 +55,18 @@ const TrainAIModel = () => {
         setTrainingData({ ...trainingData, [name]: value });
     };
 
-    const trainModel = () => {
+    const trainModel = async () => {
         console.log(trainingData);
+        let model = trainingData;
+        model.age=Number(model.age);
+        const response = await axios.post("http://localhost:8080/api/v1/ai/training", trainingData);
+        console.log("Respond", response);
         setTrainingData({
             name: "",
             age: 0,
             ethinicity: "",
             type: "",
-            eyecolor: "",
+            eyeColor: "",
             bald: false,
         })
     }
@@ -122,12 +127,12 @@ const TrainAIModel = () => {
                                                 <SelectItem value="Black">Black</SelectItem>
                                                 <SelectItem value="Asian">Asian</SelectItem>
                                                 <SelectItem value="American">American</SelectItem>
-                                                <SelectItem value="East South Asian">
+                                                <SelectItem value="EastSouthAsian">
                                                     EastSouthAsian
                                                 </SelectItem>
-                                                <SelectItem value="South Asian">SouthAsian</SelectItem>
+                                                <SelectItem value="SouthAsian">SouthAsian</SelectItem>
                                                 <SelectItem value="Pacific">Pacific</SelectItem>
-                                                <SelectItem value="Middle Eastern">
+                                                <SelectItem value="MiddleEastern">
                                                     MiddleEastern
                                                 </SelectItem>
                                                 <SelectItem value="Hispanic">Hispanic</SelectItem>
@@ -149,28 +154,29 @@ const TrainAIModel = () => {
                                                     <SelectValue placeholder="Select" />
                                                 </SelectTrigger>
                                                 <SelectContent position="popper">
-                                                    <SelectItem value="Male">Male</SelectItem>
-                                                    <SelectItem value="Female">Female</SelectItem>
-                                                    <SelectItem value="Others">Others</SelectItem>
+                                                    <SelectItem value="MAN">MAN</SelectItem>
+                                                    <SelectItem value="WOMEN">WOMEN</SelectItem>
+                                                    <SelectItem value="OTHER">OTHER</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                         </div>
                                         <div className="flex flex-1 flex-col space-y-1.5">
-                                            <Label htmlFor="eyecolor">Eye Color</Label>
+                                            <Label htmlFor="eyeColor">Eye Color</Label>
                                             <Select
                                                 onValueChange={(e: any) => {
-                                                    setTrainingData({ ...trainingData, eyecolor: e });
+                                                    setTrainingData({ ...trainingData, eyeColor: e });
                                                 }}
-                                                value={trainingData.eyecolor}
+                                                value={trainingData.eyeColor}
                                                 name="eyecolor"
                                             >
-                                                <SelectTrigger id="eyecolor" className="w-full">
+                                                <SelectTrigger id="eyeColor" className="w-full">
                                                     <SelectValue placeholder="Select" />
                                                 </SelectTrigger>
                                                 <SelectContent position="popper">
-                                                    <SelectItem value="Blue">Blue</SelectItem>
-                                                    <SelectItem value="Black">Black</SelectItem>
                                                     <SelectItem value="Brown">Brown</SelectItem>
+                                                    <SelectItem value="Gray">Gray</SelectItem>
+                                                    <SelectItem value="Hazel">Hazel</SelectItem>
+                                                    <SelectItem value="Blue">Blue</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                         </div>
@@ -209,7 +215,7 @@ const TrainAIModel = () => {
                             <Button
                                 disabled={
                                     !trainingData.name ||
-                                    !trainingData.eyecolor ||
+                                    !trainingData.eyeColor ||
                                     !trainingData.age ||
                                     !trainingData.type ||
                                     !trainingData.ethinicity

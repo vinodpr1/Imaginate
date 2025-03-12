@@ -1,3 +1,3 @@
-import { trainModels } from "./AI-controller";
+import { trainModels, generateImages, generatePacks } from "./AI-controller";
 
-export { trainModels };
+export { trainModels, generateImages, generatePacks };

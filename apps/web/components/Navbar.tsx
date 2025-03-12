@@ -10,17 +10,17 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   // Handle scroll events for header visibility
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        setIsHeaderVisible(false);
-      } else {
-        setIsHeaderVisible(true);
-      }
-      setLastScrollY(currentScrollY);
-    });
-  }
+  // if (typeof window !== "undefined") {
+  //   window.addEventListener("scroll", () => {
+  //     const currentScrollY = window.scrollY;
+  //     if (currentScrollY > lastScrollY) {
+  //       setIsHeaderVisible(false);
+  //     } else {
+  //       setIsHeaderVisible(true);
+  //     }
+  //     setLastScrollY(currentScrollY);
+  //   });
+  // }
 
   return (
     <header
@@ -28,7 +28,7 @@ const Navbar = () => {
         isHeaderVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-6xl">
+      <div className="container mx-auto px-2 h-16 flex items-center justify-between max-w-6xl">
         <div className="flex items-center space-x-2">
           <Link className="flex items-center space-x-2" href={"/"}>
             <Logo size="md" />

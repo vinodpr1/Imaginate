@@ -1,4 +1,4 @@
-import { number, z } from "zod";
+import { z } from "zod";
 
 export const TrainModel = z.object({
   name: z.string(),
@@ -17,16 +17,35 @@ export const TrainModel = z.object({
   ]),
   eyeColor: z.enum(["Brown", "Gray", "Hazel", "Blue"]),
   bald: z.boolean(),
-  userId: z.string(),
 });
 
 export const GenerateImage = z.object({
   prompt: z.string(),
-  modelid: z.string(),
+  // modelid: z.string(),
   num: z.number(),
 });
-
+  
 export const GenerateImagesFromPack = z.object({
   modelid: z.string(),
   packId: z.string(),
 });
+
+
+export const User = z.object({
+  name          : z.string(),
+  email         : z.string().email(),
+  password      : z.string(),
+  profilePicture: z.string().optional(),
+})
+
+
+
+
+
+
+
+
+
+
+
+
