@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { TrainModel, GenerateImage } from "@repo/common/types";
+import { TrainModel, GenerateImage, GeneratePack } from "@repo/common/types";
 import { prismaClient } from "@repo/db/prismaClient";
 
 const userID="duhgs834";
@@ -46,8 +46,6 @@ const trainModels = async (req: Request, res: Response) => {
   }
 };
 
-
-
 const generateImages= async (req: Request, res: Response) => {
   try {
     const parsedData = GenerateImage.safeParse(req.body);
@@ -70,7 +68,7 @@ const generateImages= async (req: Request, res: Response) => {
     res.status(200).json({
       sucess: true,
       message: "Success",
-      // data: "response",
+      data: "response",
     });
     return;
   } catch (error) {
@@ -86,7 +84,7 @@ const generateImages= async (req: Request, res: Response) => {
 
 const generatePacks= async (req: Request, res: Response) => {
   try {
-    const parsedData = GenerateImage.safeParse(req.body);
+    const parsedData = GeneratePack.safeParse(req.body);
     if (!parsedData.success) {
       res.status(200).json({
         sucess: false,
@@ -94,11 +92,15 @@ const generatePacks= async (req: Request, res: Response) => {
       });
     }
     if (!parsedData.success) return;
-    // const response = await prismaClient.trainingImages()
+    const response = await prismaClient.pack.create({
+      data:{
+        name: parsedData.data.name,
+      }
+    })
     res.status(200).json({
       sucess: true,
       message: "Success",
-      data: "response",
+      data: response,
     });
     return;
   } catch (error) {
@@ -112,4 +114,24 @@ const generatePacks= async (req: Request, res: Response) => {
   }
 }
 
-export { trainModels, generateImages, generatePacks };
+const getPacks = async (req: Request, res: Response) => {
+  try {
+    const response = await prismaClient.pack.findMany({});
+    res.status(200).json({
+      sucess: true,
+      message: "Success",
+      data: response,
+    });
+    return;
+  } catch (error) {
+    console.log("error in controllers to get pack", error);
+    res.status(500).json({
+      sucess: false,
+      message: "error in controllers to get pack",
+      data: error,
+    });
+    return;
+  }
+}
+
+export { trainModels, generateImages, generatePacks, getPacks };

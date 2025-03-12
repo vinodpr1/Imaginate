@@ -150,3 +150,22 @@
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
+
+
+
+/* // shimmer effect */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s linear infinite;
+  background: linear-gradient(90deg, #e6e0e0 25%, #ccc4c4 50%, #e7e1e1 75%);
+  background-size: 200% 100%;
+}
