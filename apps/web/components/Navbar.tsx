@@ -36,27 +36,37 @@ const Navbar = () => {
           </Link>
         </div>
         <nav className="hidden md:flex items-center space-x-6">
-          <a
-            href="#features"
+          <Link
+            href="/dashboard/train"
             className="text-muted-foreground hover:text-primary transition-colors"
           >
-            Features
-          </a>
-          <a
-            href="#examples"
+            Train Model
+          </Link>
+          <Link
+            href="/dashboard/packs"
             className="text-muted-foreground hover:text-primary transition-colors"
           >
-            Examples
-          </a>
-          <a
-            href="#pricing"
+            Packs
+          </Link>
+          <Link
+            href="/dashboard/camera"
             className="text-muted-foreground hover:text-primary transition-colors"
           >
-            Pricing
-          </a>
+            Camera
+          </Link>
+          <Link
+            href="/dashboard/generate"
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            Generate image
+          </Link>
         </nav>
         <div className="flex items-center space-x-4">
-          <Button onClick={()=>signOut()} variant="ghost" className="ghost-button">
+          <Button
+            onClick={() => signOut()}
+            variant="ghost"
+            className="ghost-button"
+          >
             Log Out
           </Button>
           <Button variant="ghost" className="ghost-button">
